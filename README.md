@@ -31,7 +31,7 @@ View the app design in Figma:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/weather_app.git
+   git clone https://github.com/Naveenm1907/weather_app.git
    cd weather_app
    ```
 
