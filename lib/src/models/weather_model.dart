@@ -7,6 +7,7 @@ class WeatherModel {
   final int? hum;
   final double? wSp;
   final int? pa;
+  final String? city;
 
   WeatherModel({
     required this.weat,
@@ -17,6 +18,7 @@ class WeatherModel {
     required this.hum,
     required this.wSp,
     required this.pa,
+    required this.city,
   });
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
     return WeatherModel(
@@ -28,6 +30,7 @@ class WeatherModel {
       hum: json['main']?['humidity'],
       wSp: (json['wind']?['speed'] as num?)?.toDouble(),
       pa: json['main']?['pressure'],
+      city: json['name'],
     );
   }
 }
