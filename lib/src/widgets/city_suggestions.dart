@@ -16,8 +16,6 @@ class CityChips extends StatefulWidget {
 
 class _CityChipsState extends State<CityChips> {
   int _selectedIndex = -1;
-  
-  // List of popular Indian cities with their iconic symbols
   static const List<Map<String, dynamic>> cities = [
     {'name': 'Mumbai', 'emoji': '🌊', 'query': 'Mumbai', 'color': Color(0xFF039BE5)},
     {'name': 'Delhi', 'emoji': '🏛️', 'query': 'Delhi', 'color': Color(0xFF1976D2)},
@@ -31,14 +29,12 @@ class _CityChipsState extends State<CityChips> {
 
   @override
   Widget build(BuildContext context) {
-    // Check if we're on a desktop-sized screen
     final size = MediaQuery.of(context).size;
     final isDesktop = size.width > 800;
     
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Simple header
         Padding(
           padding: const EdgeInsets.only(left: 4, bottom: 12),
           child: Row(
@@ -60,7 +56,6 @@ class _CityChipsState extends State<CityChips> {
           ),
         ),
         
-        // City grid with clean design
         isDesktop ? _buildCityGrid() : _buildCityList(),
       ],
     );
@@ -80,7 +75,7 @@ class _CityChipsState extends State<CityChips> {
       itemBuilder: (context, index) {
         final city = cities[index];
         final isSelected = index == _selectedIndex;
-        
+     
         return _buildCityCard(city, isSelected, index);
       },
     );
@@ -132,7 +127,6 @@ class _CityChipsState extends State<CityChips> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Emoji icon
             Container(
               width: 44,
               height: 44,
@@ -148,7 +142,6 @@ class _CityChipsState extends State<CityChips> {
               ),
             ),
             const SizedBox(height: 8),
-            // City name
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Text(
