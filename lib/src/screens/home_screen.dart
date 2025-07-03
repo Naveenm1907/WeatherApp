@@ -96,9 +96,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
   
   Future<void> _saveLocation(WeatherModel weather) async {
-    if (_savedLocations.any((loc) => loc.cityName == weather.cityName)) {
+    if (_savedLocations.any((loc) => loc.city == weather.city)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${weather.cityName} is already saved')),
+        SnackBar(content: Text('${weather.city} is already saved')),
       );
       return;
     }
@@ -107,8 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
       final prefs = await SharedPreferences.getInstance();
       final savedCities = prefs.getStringList('savedLocations') ?? [];
       
-      if (!savedCities.contains(weather.cityName)) {
-        savedCities.add(weather.cityName);
+      if (!savedCities.contains(weather.city)) {
+        savedCities.add(weather.city);
         await prefs.setStringList('savedLocations', savedCities);
         
         setState(() {
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
         
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${weather.cityName} added to saved locations')),
+          SnackBar(content: Text('${weather.city} added to saved locations')),
         );
       }
     } catch (e) {
@@ -129,15 +129,15 @@ class _HomeScreenState extends State<HomeScreen> {
       final prefs = await SharedPreferences.getInstance();
       final savedCities = prefs.getStringList('savedLocations') ?? [];
       
-      savedCities.remove(weather.cityName);
+      savedCities.remove(weather.city);
       await prefs.setStringList('savedLocations', savedCities);
       
       setState(() {
-        _savedLocations.removeWhere((loc) => loc.cityName == weather.cityName);
+        _savedLocations.removeWhere((loc) => loc.city == weather.city);
       });
       
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${weather.cityName} removed from saved locations')),
+        SnackBar(content: Text('${weather.city} removed from saved locations')),
       );
     } catch (e) {
       debugPrint('Error removing location: $e');
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final isDesktop = size.width > 800;
     LinearGradient backgroundGradient;
     if (_weather != null) {
-      final condition = _weather!.condition.toLowerCase();
+      final condition = _weather!.cond.toLowerCase();
       if (condition.contains('rain') || condition.contains('drizzle') || condition.contains('thunderstorm')) {
         backgroundGradient = AppTheme.rainyGradient;
       } else if (condition.contains('cloud') || condition.contains('mist') || condition.contains('fog')) {
