@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 class AppTheme {
   AppTheme._();
   static const Color primaryLight = Color(0xFF039BE5); // Light Blue 600
-  static const Color primaryDark = Color(0xFF0277BD); // Light Blue 800
+  static const Color primaryDark = Color.fromRGBO(2, 119, 189, 1); // Light Blue 800
   static const Color accentLight = Color(0xFFFFD54F); // Amber 300
   static const Color accentDark = Color(0xFFFFCA28); // Amber 400
   static const Color errorColor = Color(0xFFE53935);
