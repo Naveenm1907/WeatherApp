@@ -17,14 +17,14 @@ class CityChips extends StatefulWidget {
 class _CityChipsState extends State<CityChips> {
   int _selectedIndex = -1;
   static const List<Map<String, dynamic>> cities = [
-    {'name': 'Mumbai', 'emoji': '🌊', 'query': 'Mumbai', 'color': Color(0xFF039BE5)},
-    {'name': 'Delhi', 'emoji': '🏛️', 'query': 'Delhi', 'color': Color(0xFF1976D2)},
-    {'name': 'Bangalore', 'emoji': '🌳', 'query': 'Bangalore', 'color': Color(0xFF43A047)},
-    {'name': 'Hyderabad', 'emoji': '🍗', 'query': 'Hyderabad', 'color': Color(0xFF7B1FA2)},
-    {'name': 'Chennai', 'emoji': '🌊', 'query': 'Chennai', 'color': Color(0xFF0288D1)},
-    {'name': 'Kolkata', 'emoji': '🌉', 'query': 'Kolkata', 'color': Color(0xFF689F38)},
-    {'name': 'Jaipur', 'emoji': '🏰', 'query': 'Jaipur', 'color': Color(0xFFEF6C00)},
-    {'name': 'Pune', 'emoji': '🎓', 'query': 'Pune', 'color': Color(0xFF0097A7)},
+    {'name': 'Mumbai', 'query': 'Mumbai', 'color': Color(0xFF039BE5)},
+    {'name': 'Delhi', 'query': 'Delhi', 'color': Color(0xFF1976D2)},
+    {'name': 'Bangalore', 'query': 'Bangalore', 'color': Color(0xFF43A047)},
+    {'name': 'Hyderabad', 'query': 'Hyderabad', 'color': Color(0xFF7B1FA2)},
+    {'name': 'Chennai', 'query': 'Chennai', 'color': Color(0xFF0288D1)},
+    {'name': 'Kolkata', 'query': 'Kolkata', 'color': Color(0xFF689F38)},
+    {'name': 'Jaipur', 'query': 'Jaipur', 'color': Color(0xFFEF6C00)},
+    {'name': 'Pune', 'query': 'Pune', 'color': Color(0xFF0097A7)},
   ];
 
   @override
@@ -83,7 +83,7 @@ class _CityChipsState extends State<CityChips> {
   
   Widget _buildCityList() {
     return SizedBox(
-      height: 110,
+      height: 90,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
@@ -127,20 +127,6 @@ class _CityChipsState extends State<CityChips> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: isSelected ? Colors.white.withOpacity(0.3) : Colors.white.withOpacity(0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Text(
-                  city['emoji'],
-                  style: const TextStyle(fontSize: 24),
-                ),
-              ),
-            ),
             const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -149,13 +135,14 @@ class _CityChipsState extends State<CityChips> {
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  fontSize: 13,
+                  fontSize: 16,
                 ),
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),

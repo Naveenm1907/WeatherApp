@@ -222,10 +222,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final isDesktop = size.width > 800;
     LinearGradient backgroundGradient;
     if (_weather != null) {
-      final condition = _weather!.cond.toLowerCase();
-      if (condition.contains('rain') || condition.contains('drizzle') || condition.contains('thunderstorm')) {
+      final cond = _weather!.cond.toLowerCase();
+      if (cond.contains('rain') || cond.contains('drizzle') || cond.contains('thunderstorm')) {
         backgroundGradient = AppTheme.rainyGradient;
-      } else if (condition.contains('cloud') || condition.contains('mist') || condition.contains('fog')) {
+      } else if (cond.contains('cloud') || cond.contains('mist') || cond.contains('fog')) {
         backgroundGradient = AppTheme.cloudyGradient;
       } else {
         backgroundGradient = _isNight ? AppTheme.clearNightGradient : AppTheme.clearDayGradient;
@@ -503,32 +503,119 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHeader() {
     final accentColor = AppTheme.accentLight;
     
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(
-              _isNight ? Icons.nightlight_round : Icons.wb_sunny,
-              color: Colors.white,
-              size: 28,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              'Weather App',
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.white.withOpacity(0.3),
+                        Colors.white.withOpacity(0.1),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
                   ),
+                  child: Icon(
+                    _isNight ? Icons.nightlight_round : Icons.wb_sunny,
+                    color: Colors.white,
+                    size: 34,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (bounds) => LinearGradient(
+                        colors: [
+                          Colors.white,
+                          accentColor,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ).createShader(bounds),
+                      child: Text(
+                        'Weather App',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.5,
+                          fontSize: 28,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _isNight ? 'Good Evening' : 'Good Day',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white.withOpacity(0.3),
+                    Colors.white.withOpacity(0.1),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.refresh),
+                color: Colors.white,
+                iconSize: 26,
+                onPressed: () {
+                  _refreshKey.currentState?.show();
+                },
+              ),
             ),
           ],
         ),
-        IconButton(
-          icon: const Icon(Icons.refresh),
-          color: Colors.white,
-          onPressed: () {
-            _refreshKey.currentState?.show();
-          },
+        const SizedBox(height: 12),
+        Container(
+          height: 3,
+          width: 80,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [accentColor, Colors.white],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+            ),
+            borderRadius: BorderRadius.circular(3),
+          ),
         ),
       ],
     );

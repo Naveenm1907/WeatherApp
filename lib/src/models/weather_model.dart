@@ -20,17 +20,23 @@ class WeatherModel {
     required this.pa,
     required this.city,
   });
+  
   factory WeatherModel.fromJson(Map<String, dynamic> json) {
+    final weather = json['weather'] as List;
+    final weatherData = weather.isNotEmpty ? weather[0] as Map<String, dynamic> : {};
+    final mainData = json['main'] as Map<String, dynamic>? ?? {};
+    final windData = json['wind'] as Map<String, dynamic>? ?? {};
+    
     return WeatherModel(
-      weat: json['weather']?[0]['description'],
-      main: json['main']?['temp'].toDouble(),
-      cond: json['weather']?[0]['main'],
-      icon: json['weather']?[0]['icon'],
-      temp: json['main']?['temp'].toDouble(),
-      hum: json['main']?['humidity'],
-      wSp: json['wind']?['speed'].toDouble(),
-      pa: json['main']?['pressure'],
-      city: json['name'],
+      weat: weatherData['description']?.toString() ?? '',
+      main: mainData['temp']?.toString() ?? '0',
+      cond: weatherData['main']?.toString() ?? '',
+      icon: weatherData['icon']?.toString() ?? '01d',
+      temp: (mainData['temp'] != null) ? double.parse(mainData['temp'].toString()) : 0.0,
+      hum: (mainData['humidity'] != null) ? int.parse(mainData['humidity'].toString()) : 0,
+      wSp: (windData['speed'] != null) ? double.parse(windData['speed'].toString()) : 0.0,
+      pa: (mainData['pressure'] != null) ? int.parse(mainData['pressure'].toString()) : 0,
+      city: json['name']?.toString() ?? 'Unknown',
     );
   }
 }

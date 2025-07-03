@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import '../models/weather_model.dart';
 
 class WeatherCard extends StatelessWidget {
@@ -146,10 +147,23 @@ class WeatherCard extends StatelessWidget {
                   'https://openweathermap.org/img/wn/${weather.icon}@2x.png',
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
+                    debugPrint('Error loading weather icon: $error');
                     return Icon(
                       weatherIcon,
                       size: iconSize * 0.8,
                       color: Colors.white70,
+                    );
+                  },
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded / 
+                              (loadingProgress.expectedTotalBytes ?? 1)
+                            : null,
+                        color: Colors.white70,
+                      ),
                     );
                   },
                 ),
@@ -233,10 +247,23 @@ class WeatherCard extends StatelessWidget {
               'https://openweathermap.org/img/wn/${weather.icon}@4x.png',
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
+                debugPrint('Error loading weather icon: $error');
                 return Icon(
                   weatherIcon,
                   size: iconSize * 0.8,
                   color: Colors.white70,
+                );
+              },
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded / 
+                          (loadingProgress.expectedTotalBytes ?? 1)
+                        : null,
+                    color: Colors.white70,
+                  ),
                 );
               },
             ),
