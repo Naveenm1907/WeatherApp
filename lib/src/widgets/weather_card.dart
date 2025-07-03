@@ -27,8 +27,8 @@ class WeatherCard extends StatelessWidget {
     LinearGradient cardGradient;
     IconData weatherIcon;
     
-    final condition = weather.condition.toLowerCase();
-    if (condition.contains('rain') || condition.contains('drizzle')) {
+    final cond = weather.cond.toLowerCase();
+    if (cond.contains('rain') || cond.contains('drizzle')) {
       cardGradient = const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -127,7 +127,7 @@ class WeatherCard extends StatelessWidget {
         children: [
           // City Name
           Text(
-            weather.cityName,
+            weather.city,
             style: theme.textTheme.titleLarge?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -223,7 +223,7 @@ class WeatherCard extends StatelessWidget {
               const SizedBox(width: 8),
               Flexible(
                 child: Text(
-                  weather.cityName,
+                  weather.city,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
