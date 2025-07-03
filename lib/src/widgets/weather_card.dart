@@ -17,12 +17,8 @@ class WeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-
-    // Calculate responsive sizes
     final cardWidth = size.width;
     final iconSize = isCompact ? size.width * 0.10 : size.width * 0.25;
-    
-    // Choose gradient based on weather condition
     LinearGradient cardGradient;
     IconData weatherIcon;
     
@@ -124,7 +120,6 @@ class WeatherCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // City Name
           Text(
             weather.city,
             style: theme.textTheme.titleLarge?.copyWith(
@@ -136,12 +131,9 @@ class WeatherCard extends StatelessWidget {
           ),
           
           const SizedBox(height: 8),
-          
-          // Temperature and Icon in a row
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Weather Icon
               Container(
                 height: iconSize,
                 width: iconSize,
@@ -164,8 +156,6 @@ class WeatherCard extends StatelessWidget {
               ),
               
               const SizedBox(width: 12),
-              
-              // Temperature
               Text(
                 '${weather.temp.toStringAsFixed(1)}°C',
                 style: theme.textTheme.headlineMedium?.copyWith(
@@ -177,8 +167,6 @@ class WeatherCard extends StatelessWidget {
           ),
           
           const SizedBox(height: 8),
-          
-          // Weather Condition
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
@@ -210,7 +198,6 @@ class WeatherCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          // City Name with icon
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -234,8 +221,6 @@ class WeatherCard extends StatelessWidget {
           ),
           
           const SizedBox(height: 20),
-          
-          // Weather Icon with container
           Container(
             height: iconSize,
             width: iconSize,
@@ -258,8 +243,6 @@ class WeatherCard extends StatelessWidget {
           ),
           
           const SizedBox(height: 20),
-          
-          // Temperature with animation
           TweenAnimationBuilder<double>(
             tween: Tween<double>(begin: 0, end: weather.temp),
             duration: const Duration(milliseconds: 1000),
@@ -277,8 +260,6 @@ class WeatherCard extends StatelessWidget {
           ),
           
           const SizedBox(height: 20),
-          
-          // Weather Condition
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -298,8 +279,6 @@ class WeatherCard extends StatelessWidget {
           ),
           
           const SizedBox(height: 20),
-          
-          // Additional weather details
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
