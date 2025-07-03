@@ -96,7 +96,7 @@ flutter:
 
   assets:
     - .env
-    - assets/images/
+    - assets/
   fonts:
     - family: Montserrat
       fonts:
@@ -110,13 +110,13 @@ flutter:
 
 flutter_native_splash:
   color: "#039BE5"
-  image: assets/images/splash.png
+  image: assets/splash.png
   color_dark: "#0277BD"
-  image_dark: assets/images/splash.png
+  image_dark: assets/splash.png
   android_12:
-    image: assets/images/splash.png
+    image: assets/splash.png
     icon_background_color: "#039BE5"
-    image_dark: assets/images/splash.png
+    image_dark: assets/splash.png
     icon_background_color_dark: "#0277BD"
   fullscreen: true
   android: true
@@ -126,7 +126,7 @@ flutter_native_splash:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/splash.png"
+  image_path: "assets/splash.png"
   adaptive_icon_background: "#039BE5"
-  adaptive_icon_foreground: "assets/images/splash.png"
+  adaptive_icon_foreground: "assets/splash.png"
   min_sdk_android: 21

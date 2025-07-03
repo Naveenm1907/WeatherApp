@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/weather_model.dart';
-import '../theme/app_theme.dart';
 
 class WeatherCard extends StatelessWidget {
   final WeatherModel weather;
@@ -38,7 +37,7 @@ class WeatherCard extends StatelessWidget {
         ],
       );
       weatherIcon = Icons.grain;
-    } else if (condition.contains('thunderstorm')) {
+    } else if (cond.contains('thunderstorm')) {
       cardGradient = const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -48,7 +47,7 @@ class WeatherCard extends StatelessWidget {
         ],
       );
       weatherIcon = Icons.flash_on;
-    } else if (condition.contains('snow')) {
+    } else if (cond.contains('snow')) {
       cardGradient = const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -58,7 +57,7 @@ class WeatherCard extends StatelessWidget {
         ],
       );
       weatherIcon = Icons.ac_unit;
-    } else if (condition.contains('cloud') || condition.contains('mist') || condition.contains('fog')) {
+    } else if (cond.contains('cloud') || cond.contains('mist') || cond.contains('fog')) {
       cardGradient = const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -168,7 +167,7 @@ class WeatherCard extends StatelessWidget {
               
               // Temperature
               Text(
-                '${weather.temperature.toStringAsFixed(1)}°C',
+                '${weather.temp.toStringAsFixed(1)}°C',
                 style: theme.textTheme.headlineMedium?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w300,
@@ -190,7 +189,7 @@ class WeatherCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             child: Text(
-              weather.condition,
+              weather.cond,
               style: theme.textTheme.bodyLarge?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -262,7 +261,7 @@ class WeatherCard extends StatelessWidget {
           
           // Temperature with animation
           TweenAnimationBuilder<double>(
-            tween: Tween<double>(begin: 0, end: weather.temperature),
+            tween: Tween<double>(begin: 0, end: weather.temp),
             duration: const Duration(milliseconds: 1000),
             builder: (context, value, _) {
               return Text(
@@ -290,7 +289,7 @@ class WeatherCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              weather.condition,
+              weather.cond,
               style: theme.textTheme.titleLarge?.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -307,17 +306,17 @@ class WeatherCard extends StatelessWidget {
               _buildWeatherDetail(
                 Icons.water_drop,
                 'Humidity',
-                '${weather.humidity}%',
+                '${weather.hum}%',
               ),
               _buildWeatherDetail(
                 Icons.air,
                 'Wind',
-                '${weather.windSpeed} m/s',
+                '${weather.wSp} m/s',
               ),
               _buildWeatherDetail(
                 Icons.compress,
                 'Pressure',
-                '${weather.pressure} hPa',
+                '${weather.pa} hPa',
               ),
             ],
           ),
