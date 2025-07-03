@@ -22,8 +22,8 @@ View the app design in Figma:
 [Weather App Design](https://www.figma.com/design/JSNOHmkDaL3I6OzARvKxW3/Untitled?node-id=0-1&t=MJrz8xYZJeVzAgBC-1)
 
 ## Screenshots
-![App Screenshot](assets/screenshots/Screenshot%202025-07-03 222451.png)
-![App Screenshot](assets/screenshots/Screenshot%202025-07-03 222530.png)
+![App Screenshot](assets/screenshots/Screenshot%202025-07-03%20222451.png)
+![App Screenshot](assets/screenshots/Screenshot%202025-07-03%20222530.png)
 
 
 
